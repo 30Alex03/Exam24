@@ -1,5 +1,6 @@
 package com.mycompany.exam24;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -42,14 +43,21 @@ public class GUI extends javax.swing.JFrame {
 
                 for (int j = 0; j < random(1, 29); j++) {
                     Node node = new Node("Node" + (nodes.size() + 1), switch_.getSubnet());
+                    Random random = new Random();
+                    int randomNumber = random.nextInt(2);
+                    if (randomNumber == 0){
+                    node.setSleepMode(true);
+                    
+                    
+                    } else if (randomNumber == 1) node.setSleepMode(false);
                     nodes.add(node);
                 }
             }
         }
 
-        displayNetwork();
+        displayNetwork();    
     }
-
+    
     private void displayNetwork() {
         DefaultMutableTreeNode root = new DefaultMutableTreeNode("Сеть");
         for (Router router : routers) {

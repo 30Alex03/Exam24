@@ -13,14 +13,24 @@ public class Node {
     private String subnet;
     private String ipAddress;
     private boolean isActive;
+    private boolean isSleepMode = true;
+    GeneratorIp generatorIp = new GeneratorIp();
 
     public Node(String name, String subnet) {
         this.name = name;
         this.subnet = subnet;
         this.ipAddress = generateIpAddress();
-        this.isActive = true;
+        
+    }
+    
+    public void setSleepMode(boolean sleepMode) {
+        this.isSleepMode = sleepMode;
     }
 
+    public boolean getIsSleepMode() {
+        return isSleepMode;
+    }
+    
     private String generateIpAddress() {
         try {
             String[] subnetParts = subnet.split("/");
@@ -28,23 +38,12 @@ public class Node {
             int subnetMask = Integer.parseInt(subnetParts[1]);
             int availableIps = (int) Math.pow(2, 32 - subnetMask) - 2;
             int randomIp = new Random().nextInt(availableIps - 1) + 1;
-            byte[] ipBytes = incrementIpAddress(baseIp.getAddress(), randomIp);
+            byte[] ipBytes = generatorIp.incrementIpAddress(baseIp.getAddress(), randomIp);
             return InetAddress.getByAddress(ipBytes).getHostAddress();
         } catch (UnknownHostException e) {
             e.printStackTrace();
             return "";
         }
-    }
-
-    private static byte[] incrementIpAddress(byte[] ip, int increment) {
-        int intIp = (ip[0] & 0xFF) << 24 | (ip[1] & 0xFF) << 16 | (ip[2] & 0xFF) << 8 | (ip[3] & 0xFF);
-        intIp += increment;
-        return new byte[] {
-                (byte) (intIp >>> 24),
-                (byte) (intIp >>> 16),
-                (byte) (intIp >>> 8),
-                (byte) intIp
-        };
     }
 
     public String getName() {
@@ -59,7 +58,5 @@ public class Node {
         return ipAddress;
     }
 
-    public boolean isActive() {
-        return isActive;
-    }
+    
 }

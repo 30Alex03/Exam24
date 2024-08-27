@@ -1,10 +1,10 @@
-package com.mycompany.exam24;
+package com.mycompany.examwork;
 
 /**
  *
  * @author ivahn
  */
-public class Exam24 {
+public class ExamWork {
 
     public static void main(String[] args) {
         GUI gui = new GUI();

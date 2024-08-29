@@ -1,9 +1,12 @@
 package com.mycompany.examwork;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import javax.swing.JOptionPane;
 import javax.swing.JTree;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
@@ -31,8 +34,7 @@ public class GUI extends javax.swing.JFrame {
      */
     public GUI() {
         initComponents();
-        
-        
+        networkTree.setCellRenderer(new MyTreeCellRenderer());
     }
     
     
@@ -45,6 +47,12 @@ public class GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jOptionPane = new javax.swing.JOptionPane();
+        jDialog = new javax.swing.JDialog();
+        changeIPAdressDialog = new javax.swing.JDialog();
+        ipAdressTextField = new javax.swing.JTextField();
+        confirmButton = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         routerTextField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -61,6 +69,56 @@ public class GUI extends javax.swing.JFrame {
         info1Button = new javax.swing.JButton();
         info2Button = new javax.swing.JButton();
         resultButton = new javax.swing.JButton();
+        newStatusButton = new javax.swing.JButton();
+        changeIPAdressButton = new javax.swing.JButton();
+
+        javax.swing.GroupLayout jDialogLayout = new javax.swing.GroupLayout(jDialog.getContentPane());
+        jDialog.getContentPane().setLayout(jDialogLayout);
+        jDialogLayout.setHorizontalGroup(
+            jDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialogLayout.setVerticalGroup(
+            jDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        confirmButton.setText("Подтвердить новый IP");
+        confirmButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Введите значение от 0 до 256");
+
+        javax.swing.GroupLayout changeIPAdressDialogLayout = new javax.swing.GroupLayout(changeIPAdressDialog.getContentPane());
+        changeIPAdressDialog.getContentPane().setLayout(changeIPAdressDialogLayout);
+        changeIPAdressDialogLayout.setHorizontalGroup(
+            changeIPAdressDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(changeIPAdressDialogLayout.createSequentialGroup()
+                .addGap(91, 91, 91)
+                .addGroup(changeIPAdressDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(changeIPAdressDialogLayout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(changeIPAdressDialogLayout.createSequentialGroup()
+                        .addComponent(ipAdressTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                        .addComponent(confirmButton)
+                        .addGap(65, 65, 65))))
+        );
+        changeIPAdressDialogLayout.setVerticalGroup(
+            changeIPAdressDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(changeIPAdressDialogLayout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addGroup(changeIPAdressDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(confirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ipAdressTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(197, Short.MAX_VALUE))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -140,35 +198,48 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
+        newStatusButton.setText("Обновить статус");
+        newStatusButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newStatusButtonActionPerformed(evt);
+            }
+        });
+
+        changeIPAdressButton.setText("Изменить ip адрес");
+        changeIPAdressButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changeIPAdressButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(54, 54, 54)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(routerTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(mask, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1))
-                        .addGap(17, 17, 17))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(exitButton)
-                        .addGap(80, 80, 80))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(routerTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(mask, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(resultButton, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(newStatusButton, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(102, 102, 102)
-                        .addComponent(resultButton)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(179, 179, 179))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(314, 314, 314)))
+                .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,8 +252,10 @@ public class GUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(info1Button)
-                    .addComponent(info2Button))
-                .addGap(46, 46, 46))
+                    .addComponent(info2Button)
+                    .addComponent(exitButton)
+                    .addComponent(changeIPAdressButton))
+                .addGap(43, 43, 43))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,13 +274,14 @@ public class GUI extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jButton2)
                                     .addComponent(mask, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(99, 99, 99)
-                                        .addComponent(exitButton))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(resultButton))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(newStatusButton)
+                                    .addComponent(changeIPAdressButton))
+                                .addGap(49, 49, 49)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(resultButton)
+                                    .addComponent(exitButton)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(23, 23, 23)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -294,6 +368,7 @@ public class GUI extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         NetworkGenerator networkGenerator = new NetworkGenerator();
         int num = Integer.parseInt(mask.getText());
+        int np = getRandomPrinter();
         int p = num-23;
         int t = getRandomPort();
         int u = t/28 + 1;
@@ -304,8 +379,13 @@ public class GUI extends javax.swing.JFrame {
                     DefaultMutableTreeNode newCommutator = new DefaultMutableTreeNode(networkGenerator.createCommutator(j));
                         for (int k = 1; k < 29; k++) {
                             boolean v = getisSleepMode();
-                            DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(networkGenerator.createNode(k, num, v));
-                            
+                            DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(networkGenerator.createNode(k, t, v));
+                            if (np != 0){
+                                DefaultMutableTreeNode newNetworkPrinter = new DefaultMutableTreeNode(networkGenerator.createNetworkPrinter(np));
+                                newCommutator.add(newNetworkPrinter);
+                                np--;
+                                k++;
+                            }
                             newCommutator.add(newNode);
                             t--;
                             if (t == 0) break;
@@ -332,10 +412,20 @@ public class GUI extends javax.swing.JFrame {
             
         }*/
         Object[] array = networkTree.getSelectionPath().getPath();
+        
+        
         String p = "";
         for (int i = 1; i < array.length; i++) {
             p += array[i].toString() + " ";
         }
+        //Object node = (Object) ((DefaultMutableTreeNode) value).getUserObject();
+        Object object = ((DefaultMutableTreeNode) networkTree.getSelectionPath().getLastPathComponent()).getUserObject();
+        if (object instanceof Node){
+            Node node = (Node) object;
+            if(node.getIsSleepMode()){
+                p = "Is sleeping";
+            }
+        } 
         firstTextArea.setText(p);
         if (array.length == 5){
             b1 = networkTree.getSelectionPath();
@@ -350,6 +440,13 @@ public class GUI extends javax.swing.JFrame {
         for (int i = 1; i < array.length; i++) {
             p += array[i].toString() + " ";
         }
+        Object object = ((DefaultMutableTreeNode) networkTree.getSelectionPath().getLastPathComponent()).getUserObject();
+        if (object instanceof Node){
+            Node node = (Node) object;
+            if(node.getIsSleepMode()){
+                p = "Is sleeping";
+            }
+        } 
         secondTextArea.setText(p);
         if (array.length == 5){
             b2 = networkTree.getSelectionPath();
@@ -357,16 +454,56 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_info2ButtonActionPerformed
 
     private void resultButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultButtonActionPerformed
-        if (b1 == null || b2 == null){
-            System.out.println("Выберете что-то из дерева");
-        } else if (x){
-            System.out.println("выбран не узел");
+        if (b1 == null || b2 == null) {
+            showMessageDialog("Выберите что-то из дерева", "Ошибка");
+        } else if (x) {
+            showMessageDialog("Выбран не узел", "Ошибка");
             x = false;
-        } else if (b1.getPathComponent( 3) == b2.getPathComponent(3)){
-            System.out.println("связаны");
-        } else System.out.println("не связаны");
+        } else if (b1.getPathComponent(3) == b2.getPathComponent(3)) {
+            showMessageDialog("Связаны", "Информация");
+        } else {
+            showMessageDialog("Не связаны", "Информация");
+        }
     }//GEN-LAST:event_resultButtonActionPerformed
-        
+
+    private void newStatusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newStatusButtonActionPerformed
+        Object object = ((DefaultMutableTreeNode) networkTree.getSelectionPath().getLastPathComponent()).getUserObject();
+        if (object instanceof Node){
+            Node node = (Node) object;
+            if(node.getIsSleepMode()){
+                node.setSleepMode(false);
+            } else {node.setSleepMode(true);}
+        } 
+    }//GEN-LAST:event_newStatusButtonActionPerformed
+
+    private void changeIPAdressButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeIPAdressButtonActionPerformed
+        Object object = ((DefaultMutableTreeNode) networkTree.getSelectionPath().getLastPathComponent()).getUserObject();
+        Node node = (Node) object;
+        if(node.isSleepMode){
+            showMessageDialog("Невозможно изменить ip-адрес", "Ошибка");
+        } else{
+            changeIPAdressDialog.setTitle("Изменение IP-адреса");
+            changeIPAdressDialog.setModal(true);
+            changeIPAdressDialog.setSize(600, 300); 
+            changeIPAdressDialog.setLocationRelativeTo(null);
+            changeIPAdressDialog.setVisible(true);
+        }
+    }//GEN-LAST:event_changeIPAdressButtonActionPerformed
+
+    private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
+        Object object = ((DefaultMutableTreeNode) networkTree.getSelectionPath().getLastPathComponent()).getUserObject();
+        Node node = (Node) object;
+        int num = Integer.parseInt(ipAdressTextField.getText());
+            if(num < 257){
+                node.setMask(num);
+                // Здесь вы должны обновить текущий IP-адрес узла
+                showMessageDialog(node.toString(), "Новый IP-адрес:");
+                //System.out.println("Новый IP-адрес: " + node.toString());
+            } else {
+                showMessageDialog("Неверный IP-адрес", "Ошибка");
+            }
+    }//GEN-LAST:event_confirmButtonActionPerformed
+    
     
     public int getRandomNodes(int min, int max) {        
         Random random = new Random();
@@ -383,6 +520,11 @@ public class GUI extends javax.swing.JFrame {
         boolean isSleepMode = random.nextBoolean();
         return isSleepMode;
     } 
+    
+    public int getRandomPrinter() {
+        Random random = new Random();
+        return 1 + random.nextInt(3);
+    }
     /**
      * @param args the command line arguments
      */
@@ -419,21 +561,33 @@ public class GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton changeIPAdressButton;
+    private javax.swing.JDialog changeIPAdressDialog;
+    private javax.swing.JButton confirmButton;
     private javax.swing.JButton exitButton;
     private javax.swing.JTextArea firstTextArea;
     private javax.swing.JButton info1Button;
     private javax.swing.JButton info2Button;
+    private javax.swing.JTextField ipAdressTextField;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JDialog jDialog;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JOptionPane jOptionPane;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField mask;
     private javax.swing.JTree networkTree;
+    private javax.swing.JButton newStatusButton;
     private javax.swing.JButton resultButton;
     private javax.swing.JTextField routerTextField;
     private javax.swing.JTextArea secondTextArea;
     // End of variables declaration//GEN-END:variables
+
+    private void showMessageDialog(String message, String title) {
+        JOptionPane.showMessageDialog(null, message, title, JOptionPane.INFORMATION_MESSAGE);
+    }
 }

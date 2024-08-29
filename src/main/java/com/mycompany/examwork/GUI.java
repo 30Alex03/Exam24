@@ -56,11 +56,11 @@ public class GUI extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         routerTextField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        createRoutersButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         networkTree = new javax.swing.JTree();
         mask = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        addMaskButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         firstTextArea = new javax.swing.JTextArea();
         exitButton = new javax.swing.JButton();
@@ -130,10 +130,10 @@ public class GUI extends javax.swing.JFrame {
 
         jLabel1.setText("Количество маршрутизаторов");
 
-        jButton1.setText("Создать маршрутизаторы");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        createRoutersButton.setText("Создать маршрутизаторы");
+        createRoutersButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                createRoutersButtonActionPerformed(evt);
             }
         });
 
@@ -155,10 +155,10 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Добавить маску ");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        addMaskButton.setText("Добавить маску ");
+        addMaskButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                addMaskButtonActionPerformed(evt);
             }
         });
 
@@ -228,8 +228,8 @@ public class GUI extends javax.swing.JFrame {
                                     .addComponent(mask, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)))
+                                    .addComponent(addMaskButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(createRoutersButton, javax.swing.GroupLayout.Alignment.TRAILING)))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(resultButton, javax.swing.GroupLayout.Alignment.LEADING)
@@ -269,10 +269,10 @@ public class GUI extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(routerTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton1))
+                                    .addComponent(createRoutersButton))
                                 .addGap(84, 84, 84)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jButton2)
+                                    .addComponent(addMaskButton)
                                     .addComponent(mask, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -321,7 +321,7 @@ public class GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_routerTextFieldActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void createRoutersButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createRoutersButtonActionPerformed
         NetworkGenerator networkGenerator = new NetworkGenerator();
         int numRouters = Integer.parseInt(routerTextField.getText());
         for (int i = 1; i < (numRouters+1); i++) {
@@ -332,7 +332,7 @@ public class GUI extends javax.swing.JFrame {
         model = (DefaultTreeModel) networkTree.getModel();
         model.setRoot(routers);
         networkTree.setModel(model);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_createRoutersButtonActionPerformed
 
     private void networkTreeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_networkTreeMouseClicked
         
@@ -365,7 +365,7 @@ public class GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_maskActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void addMaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMaskButtonActionPerformed
         NetworkGenerator networkGenerator = new NetworkGenerator();
         int num = Integer.parseInt(mask.getText());
         int np = getRandomPrinter();
@@ -396,7 +396,7 @@ public class GUI extends javax.swing.JFrame {
         }
         DefaultTreeModel model = (DefaultTreeModel) networkTree.getModel();
         model.reload();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_addMaskButtonActionPerformed
 
     
     private void networkTreeValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_networkTreeValueChanged
@@ -561,16 +561,16 @@ public class GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addMaskButton;
     private javax.swing.JButton changeIPAdressButton;
     private javax.swing.JDialog changeIPAdressDialog;
     private javax.swing.JButton confirmButton;
+    private javax.swing.JButton createRoutersButton;
     private javax.swing.JButton exitButton;
     private javax.swing.JTextArea firstTextArea;
     private javax.swing.JButton info1Button;
     private javax.swing.JButton info2Button;
     private javax.swing.JTextField ipAdressTextField;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JDialog jDialog;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

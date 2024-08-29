@@ -10,11 +10,6 @@ import java.util.Random;
  */
 public class NetworkGenerator {
 
-    public int MIN_NODES_PER_SUBNET = 1;
-    public int MAX_NODES_PER_SUBNET = 29;
-    public String BASE_IP_ADDRESS = "192.168.0.";
-    public int PORT_OFFSET = 1;
-
     public Subnet createSubnet(int num, int maskLength) {
         return new Subnet(num, maskLength);
     }

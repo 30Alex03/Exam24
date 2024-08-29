@@ -8,7 +8,6 @@ public abstract class ConnectingNode {
 
     public int num;
     public int mask;
-    public boolean isSleepMode;
 
     public abstract String toString();
 

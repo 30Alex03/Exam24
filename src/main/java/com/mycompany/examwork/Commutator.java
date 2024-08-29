@@ -2,23 +2,25 @@ package com.mycompany.examwork;
 
 /**
  *
- * @author ivahn
+ * @author ivahno
  */
 public class Commutator {
-    public int portOffset;
     public int num;
 
-        public Commutator(int num) {
-            this.portOffset = portOffset;
-            this.num = num;
-        }
+    public Commutator(int num) {
+        this.num = num;
+    }
 
-        public int getPortOffset() {
-            return portOffset;
-        }
+    public int getNum() {
+        return num;
+    }
+    
+    public void setNum(int num) {
+        this.num = num;
+    }
 
-        @Override
-        public String toString() {
-            return "Коммутатор  " + num;
-        }
+    @Override
+    public String toString() {
+        return "Коммутатор  " + num;
+    }
 }

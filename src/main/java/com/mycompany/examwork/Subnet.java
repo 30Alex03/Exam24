@@ -30,8 +30,16 @@ public class Subnet {
         return num;
     }
 
+    public String getSubnetMask(int maskLength) {
+        int mask = 0xFFFFFFFF << (32 - maskLength);
+        return ((mask >> 24) & 0xFF) + "." +
+               ((mask >> 16) & 0xFF) + "." +
+               ((mask >> 8) & 0xFF) + "." +
+               (mask & 0xFF);
+    }
+    
     @Override
     public String toString() {
-        return "Подсеть " + num + ": " + "192.168.0." + maskLength;
+        return "Подсеть " + num + ": " + getSubnetMask(maskLength);
     }
 }

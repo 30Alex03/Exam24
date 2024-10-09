@@ -1,8 +1,12 @@
 package com.mycompany.examwork;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 /**
  *
@@ -15,23 +19,23 @@ public class NetworkGenerator {
     }
 
     public Router createRouter(int number) {
-        // Создание маршрутизатора с IP-адресом 192.168.0.1
+        
         return new Router(number);
     }
 
     public Commutator createCommutator(int num) {
-        // Создание коммутатора с 30 портами
+        
         return new Commutator(num);
     }
 
-    public Node createNode(int num, int mask, boolean isSleepMode) {
-        // Создание узла с IP-адресом в диапазоне 192.168.0.1 - 192.168.0.254
+    public Node createNode(int num, int x, int ip, boolean isSleepMode) {
+        
 
-        return new Node(num, mask, isSleepMode);
+        return new Node(num, x, ip, isSleepMode);
     }
 
     public NetworkPrinter createNetworkPrinter(int num) {
-        // Создание узла с IP-адресом в диапазоне 192.168.0.1 - 192.168.0.254
+        
 
         return new NetworkPrinter(num);
     }
@@ -40,5 +44,10 @@ public class NetworkGenerator {
         Random random = new Random();
         return random.nextInt(max - min + 1) + min;
     }
-
+    
+    
+    
+    
+        
+    
 }

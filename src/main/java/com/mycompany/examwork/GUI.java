@@ -3,6 +3,8 @@ package com.mycompany.examwork;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -368,18 +370,27 @@ public class GUI extends javax.swing.JFrame {
     private void addMaskButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMaskButtonActionPerformed
         NetworkGenerator networkGenerator = new NetworkGenerator();
         int num = Integer.parseInt(mask.getText());
+        if (24<=num && num <=28){
+        int numberHost = 1;
         int np = getRandomPrinter();
-        int p = num-23;
+        int p = (int) Math.pow(2, (num - 24 ));
         int t = getRandomPort();
         int u = t/28 + 1;
         DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) networkTree.getSelectionPath().getLastPathComponent();
+        String str = selectedNode.toString();
+        // Извлекаем последний символ
+        String[] parts = str.split(" ");
+        String numberStr = parts[parts.length - 1]; // Получаем последний элемент массива
+        // Преобразуем строку в int
+        int x = Integer.parseInt(numberStr);
         for (int i = 1; i < (p+1); i++) {
             DefaultMutableTreeNode newSubnet = new DefaultMutableTreeNode(networkGenerator.createSubnet(i, num));
+            
                 for (int j = 1; j < (u + 1); j++) {
                     DefaultMutableTreeNode newCommutator = new DefaultMutableTreeNode(networkGenerator.createCommutator(j));
                         for (int k = 1; k < 29; k++) {
                             boolean v = getisSleepMode();
-                            DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(networkGenerator.createNode(k, t, v));
+                            DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(networkGenerator.createNode(k, x, numberHost++, v));
                             if (np != 0){
                                 DefaultMutableTreeNode newNetworkPrinter = new DefaultMutableTreeNode(networkGenerator.createNetworkPrinter(np));
                                 newCommutator.add(newNetworkPrinter);
@@ -387,15 +398,17 @@ public class GUI extends javax.swing.JFrame {
                                 k++;
                             }
                             newCommutator.add(newNode);
-                            t--;
-                            if (t == 0) break;
+                            
+                            if (numberHost == t) break;
                     }
                     newSubnet.add(newCommutator);
             }
             selectedNode.add(newSubnet);
+            
         }
         DefaultTreeModel model = (DefaultTreeModel) networkTree.getModel();
         model.reload();
+        } else showMessageDialog("Невозможно установить данную маску", "Ошибка");
     }//GEN-LAST:event_addMaskButtonActionPerformed
 
     
@@ -494,7 +507,7 @@ public class GUI extends javax.swing.JFrame {
         Object object = ((DefaultMutableTreeNode) networkTree.getSelectionPath().getLastPathComponent()).getUserObject();
         Node node = (Node) object;
         int num = Integer.parseInt(ipAdressTextField.getText());
-            if(num < 257){
+            if(num < 257 && num > 0){
                 node.setMask(num);
                 // Здесь вы должны обновить текущий IP-адрес узла
                 showMessageDialog(node.toString(), "Новый IP-адрес:");
@@ -505,10 +518,14 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_confirmButtonActionPerformed
     
     
-    public int getRandomNodes(int min, int max) {        
+    /*public int getRandomNodes(int subnetMask) {     
         Random random = new Random();
-        return random.nextInt(max - min + 1) + min;
-    }
+        int numHosts = random.nextInt((int) Math.pow(2, (32 - subnetMask)) - 2);// минус сеть и широковещательный адрес
+        //int numHosts = (int) Math.pow(2, (32 - subnetMask)) - 2; // минус сеть и широковещательный адрес
+        return numHosts;
+    }*/
+    
+    
 
     public int getRandomPort() {
         Random random = new Random();

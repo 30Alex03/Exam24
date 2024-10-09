@@ -7,13 +7,16 @@ package com.mycompany.examwork;
 public class Node extends ConnectingNode {
 
     public int num;
-    public int mask;
+    public int ip;
+    public int x;
     public boolean isSleepMode;
+     
 
-    public Node(int num, int mask, boolean isSleepMode) {
+    public Node(int num, int x, int ip, boolean isSleepMode) {
         this.num = num;
-        this.mask = mask;
+        this.ip = ip;
         this.isSleepMode = isSleepMode;
+        this.x = x;
     }
 
     public void setSleepMode(boolean sleepMode) {
@@ -35,17 +38,17 @@ public class Node extends ConnectingNode {
     }
 
     @Override
-    public void setMask(int mask) {
-        this.mask = mask;
+    public void setMask(int ip) {
+        this.ip = ip;
     }
 
     @Override
     public int getMask() {
-        return mask;
+        return ip;
     }
 
     @Override
     public String toString() {
-        return "Компьютер " + num + ": " + "192.168.0." + mask;
+        return "Компьютер " + num + ": " + "192.168." + x + "." + ip;
     }
 }
